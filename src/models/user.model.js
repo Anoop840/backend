@@ -1,7 +1,7 @@
 import mongoose,{Schema} from "mongoose";
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
-import { useReducer } from "react";
+
 
 const userSchema=new Schema({
     username:{
