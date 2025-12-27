@@ -8,17 +8,17 @@ const toggleVideoLike = asyncHandler(async (req, res) => {
   const { videoId } = req.params;
   // toggle like on video
 
-  if (!isValidObjectId(videoId)) {
+  if (!mongoose.isValidObjectId(videoId)) {
     throw new ApiError(400, "Invalid video id");
   }
 
-  const likedAlready = await Like.findOne({
+  const alreadyLiked = await Like.findOne({
     video: videoId,
     likedBy: req.user?._id,
   });
 
-  if (likedAlready) {
-    await Like.findByIdAndDelete(likedAlready._id);
+  if (alreadyLiked) {
+    await Like.findByIdAndDelete(alreadyLiked._id);
 
     return res
       .status(200)
